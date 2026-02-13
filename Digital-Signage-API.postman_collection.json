@@ -1,0 +1,643 @@
+{
+	"info": {
+		"_postman_id": "digital-signage-api-001",
+		"name": "Digital Signage API",
+		"description": "Complete API collection for Digital Signage System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@signage.com\",\n  \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "auth", "login"]
+						},
+						"description": "Login with admin credentials to get JWT token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/health",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["health"]
+						},
+						"description": "Check if server is running"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Screens",
+			"item": [
+				{
+					"name": "Get All Screens",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/screens",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "screens"]
+						},
+						"description": "Get list of all screens"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Screen by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/screens/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "screens", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_SCREEN_ID"
+								}
+							]
+						},
+						"description": "Get screen details by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Screen",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Reception Screen\",\n  \"location\": \"Main Reception\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/screens",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "screens"]
+						},
+						"description": "Create a new screen with auto-generated device code"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Screen",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Screen Name\",\n  \"location\": \"New Location\",\n  \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/screens/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "screens", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_SCREEN_ID"
+								}
+							]
+						},
+						"description": "Update screen details"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Screen",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/screens/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "screens", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_SCREEN_ID"
+								}
+							]
+						},
+						"description": "Delete a screen"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Media",
+			"item": [
+				{
+					"name": "Get All Media",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/media",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "media"]
+						},
+						"description": "Get list of all media files"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Media by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/media/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "media", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_MEDIA_ID"
+								}
+							]
+						},
+						"description": "Get media details by ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Media",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "name",
+									"value": "Test Image",
+									"type": "text"
+								},
+								{
+									"key": "duration",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/media/upload",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "media", "upload"]
+						},
+						"description": "Upload a new media file (image or video)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Media",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Media Name\",\n  \"duration\": 15\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/media/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "media", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_MEDIA_ID"
+								}
+							]
+						},
+						"description": "Update media metadata"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Media",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/media/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "media", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_MEDIA_ID"
+								}
+							]
+						},
+						"description": "Delete a media file"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Playlists",
+			"item": [
+				{
+					"name": "Get All Playlists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/playlists",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "playlists"]
+						},
+						"description": "Get list of all playlists"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Playlist by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/playlists/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "playlists", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_PLAYLIST_ID"
+								}
+							]
+						},
+						"description": "Get playlist details with media"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Playlist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Morning Playlist\",\n  \"description\": \"Content for morning display\",\n  \"media_ids\": []\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/playlists",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "playlists"]
+						},
+						"description": "Create a new playlist"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Playlist",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Playlist Name\",\n  \"description\": \"New description\",\n  \"is_active\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/playlists/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "playlists", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_PLAYLIST_ID"
+								}
+							]
+						},
+						"description": "Update playlist details"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Playlist Media",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"media_ids\": [\"media_id_1\", \"media_id_2\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/playlists/:id/media",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "playlists", ":id", "media"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_PLAYLIST_ID"
+								}
+							]
+						},
+						"description": "Update media order in playlist"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Playlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/playlists/:id",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "playlists", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "YOUR_PLAYLIST_ID"
+								}
+							]
+						},
+						"description": "Delete a playlist"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Assignments",
+			"item": [
+				{
+					"name": "Assign Playlist to Screen",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"screen_id\": \"YOUR_SCREEN_ID\",\n  \"playlist_id\": \"YOUR_PLAYLIST_ID\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/assignments",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "assignments"]
+						},
+						"description": "Assign a playlist to a screen"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Screen Assignment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/assignments/screen/:screenId",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "assignments", "screen", ":screenId"],
+							"variable": [
+								{
+									"key": "screenId",
+									"value": "YOUR_SCREEN_ID"
+								}
+							]
+						},
+						"description": "Get playlist assigned to a screen"
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Screen Assignment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/assignments/screen/:screenId",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "assignments", "screen", ":screenId"],
+							"variable": [
+								{
+									"key": "screenId",
+									"value": "YOUR_SCREEN_ID"
+								}
+							]
+						},
+						"description": "Remove playlist assignment from screen"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Player API",
+			"item": [
+				{
+					"name": "Get Playlist by Device Code",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/player/playlist/:deviceCode",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "player", "playlist", ":deviceCode"],
+							"variable": [
+								{
+									"key": "deviceCode",
+									"value": "ABC123"
+								}
+							]
+						},
+						"description": "Get playlist for a device (no auth required)"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Heartbeat",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/player/heartbeat/:deviceCode",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "player", "heartbeat", ":deviceCode"],
+							"variable": [
+								{
+									"key": "deviceCode",
+									"value": "ABC123"
+								}
+							]
+						},
+						"description": "Update device heartbeat (no auth required)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Device Status",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/player/status/:deviceCode",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "5000",
+							"path": ["api", "player", "status", ":deviceCode"],
+							"variable": [
+								{
+									"key": "deviceCode",
+									"value": "ABC123"
+								}
+							]
+						},
+						"description": "Get device status (no auth required)"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "auth_token",
+			"value": "YOUR_JWT_TOKEN_HERE",
+			"type": "string"
+		}
+	]
+}
